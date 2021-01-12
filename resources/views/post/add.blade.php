@@ -4,34 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+    *{margin:0;}
+    .edit_head{background-color: cornsilk;width: 100%;height: 80px;}
+    .index_title{font-size: 40px;text-align: center;font-weight: bolder;color: rgb(21, 51, 21);}
+    .edit_link{text-align:right;margin-right:40px;font-size:20px;}
+    .edit_top_title{text-align:center;font-size:24px;font-weight:bolder;letter-spacing:5px;margin-bottom:50px;}
+    .add_allItem{
+        background-color: cornsilk;width:700px;margin-left:auto;margin-right:auto;border-radius:10px;}
+    .add_items{display:flex;justify-content: center;padding-top:50px;}
+    .add_item{font-weight:bolder;font-size:20px;}
+    .add_item>input{width:200px;height:30px;}
+    .add_send{padding-bottom:30px;}
+    .add_itemR{padding-left:20px;}
+    </style>
 </head>
 <body>
-    <a href="/post">投稿一覧</a>
+    <div class="edit_head">
+        <p class="index_title">Rcs</p>
+    </div>
+    <div class="edit_link">
+        <a href="/post">投稿一覧</a>
+    </div>
+    <div class="edit_top_title">新規投稿</div>
     <form action="/post/add" method="post" enctype="multipart/form-data">
-    @if($errors->has('product_name'))
-        {{$errors->first('product_name')}}
-    @endif
-        <tr><th>商品名</th><td><input type="text" name="product_name"></td></tr>
-    @if($errors->has('price'))
-        {{$errors->first('price')}}
-    @endif
-        <tr><th>価格</th><td><input type="number" name="price"></td></tr>
-    @if($errors->has('store'))
-        {{$errors->first('store')}}
-    @endif
-        <tr><th>店名</th><td><input type="text" name="store"></td></tr>
-    @if($errors->has('text'))
-        {{$errors->first('text')}}
-    @endif
-        <tr><th>感想</th><td><input type="text" name="text"></td></tr>
-    @if($errors->has('image'))
-        {{$errors->first('image')}}
-    @endif
-        <tr><th>画像</th><td><input type="file" name="image"></td></tr>
-    <table>
-        @csrf
-        <tr><th>投稿する</th><td><input type="submit" value="send" value="send"></td></tr>
-    </table>
+    <div class="add_allItem">
+        <div class = "add_items">
+            <div class="add_item">
+            @if($errors->has('product_name'))
+                {{$errors->first('product_name')}}
+            @endif
+                商品名<input type="text" name="product_name">
+            </div>
+            <div class="add_item add_itemR">
+            @if($errors->has('price'))
+                {{$errors->first('price')}}
+            @endif
+                価格<input type="number" name="price">
+            </div>
+        </div>
+        <div class="add_items">
+            <div class="add_item">
+            @if($errors->has('store'))
+                {{$errors->first('store')}}
+            @endif
+                店名<input type="text" name="store">
+            </div>
+            <div class="add_item add_itemR">
+            @if($errors->has('text'))
+                {{$errors->first('text')}}
+            @endif
+                感想<input type="text" name="text">
+            </div>
+        </div>
+        <div class="add_items add_send">
+            <div class="add_item">
+            @if($errors->has('image'))
+                {{$errors->first('image')}}
+            @endif
+                画像<input type="file" name="image">
+            </div>
+            <div class="add_item">
+                @csrf
+                投稿する<input type="submit" value="send" value="send">
+            </div>
+        </div>
+    </div>
+    
     </form>
 </body>
 </html>

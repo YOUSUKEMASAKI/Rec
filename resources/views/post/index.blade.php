@@ -10,17 +10,33 @@
     <div class="index_head">
         <p class="index_title">Rcs</p>
     </div>
-    <a href="/post/add">新規投稿</a>
-    <a href="{{ url('/logout/user') }}"> ログアウト </a>
+    <div class="index_path">
+        <a href="/post/add">新規投稿</a>
+        <a href="{{ url('/logout/user') }}"> ログアウト </a>
+    </div>
     @foreach($items as $item)
-    <img src="{{ $item->image_path }}">
-    {{$item->product_name}}
-    {{$item->price}}
-    {{$item->store}}
-    {{$item->text}}
-    @if(auth()->user()->id == $item->user_id)
-    <a href="/post/edit?id={{$item->id}}">編集</a>
-    @endif
+    <div class="index_posts">
+        <div class="index_post">
+            <img src="{{ $item->image_path }}">
+            <div class="index_postItem">
+                <div class="index_item">商品名：
+                {{$item->product_name}}
+                </div>
+                <div class="index_item">価格：
+                {{$item->price}}
+                </div>
+                <div class="index_item">店名：
+                {{$item->store}}
+                </div>
+                <div class="index_item">感想：
+                {{$item->text}}
+                </div>
+                @if(auth()->user()->id == $item->user_id)
+                <a href="/post/edit?id={{$item->id}}">編集</a>
+                @endif
+            </div>
+        </div>
+    </div>
     @endforeach
 </body>
 </html>
